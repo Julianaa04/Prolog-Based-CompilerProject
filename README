@@ -1,0 +1,34 @@
+Lexical_Analysis.py:
+-Implementation of  Scanner & Parsing
+-We commented Built_in and comment as we discussed before for avoiding errors
+Example of testCase used -> Predicates graph(string,string$)clauses graph(20$):-A< B+C.goal g.
+........................................................................
+DFA_GENERATION.py:
+-Definition of all DFAs in separate
+-we use this function to generate all dfas as .png :
+dfas = [dfa_Number,dfa_Relational_Operators,dfa_Arthematic_Operators,dfaComment,dfa_Predicates,dfa_goal,dfa_clauses,dfa_Char,dfa_SpecialChar,dfa_String,dfareal,dfa_INT,dfa_Predicate_NAME,dfaSpecialVariable,dfaIdentifierVariable]
+for index, dfa in enumerate(dfas):
+filename = f'dfa_graph_{index}'
+generate_dfa_graph(dfa, filename)
+
+-we can use the function like this to generate any dfa as .png: for example here it will generate only dfa_Number
+dfas = [dfa_Number]
+for index, dfa in enumerate(dfas):
+filename = f'dfa_graph_{index}'
+generate_dfa_graph(dfa, filename)
+
+-Start state in all DFAs moves to q0 with an empty label, indicates that q0 is an initial state
+'start':{' ':'q0'},
+..........................................................................
+ANIMATION_DFA.py:
+-Definition of some DFAs with animation
+-Ability to animate dfa based on the string given to every seperate dfa
+Here: after Definition of DFA_Number , we test it using a string based on the Alphabets in 'input_symbols' -> means we cannot enter a string its characters not in the input symbols of dfa definition
+and it will generate this string as a char by char in 'dfa_animation.png' for acceptance/rejection of this string in given dfa using time delay(1).
+For example: In dfa_Number,
+string = '-9.990'
+animate_dfa(dfa_Number, string)
+it will be open 'dfa_animation.png' and generate string which will be accepted here.
+
+So,if we want to test any dfa we must comment these 2 lines string = '-9.990'              in all DFAs except the one i want to test to avoid overwriting problem in file 'dfa_animation.png'
+                                                            animate_dfa(dfa_Number, string)
